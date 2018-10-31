@@ -11,8 +11,8 @@ Editor de Spyder
 
 Este es un archivo temporal.
 """
-class nodo:
-    def _init_(self, datos, hijos=None):
+class Nodo:
+    def __init__(self, datos, hijos=None):
         self.datos = datos
         self.hijos= None
         self.padre = None
