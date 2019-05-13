@@ -14,7 +14,7 @@ Este es un archivo temporal.
 
 from  arbol_AI import Nodo
 
-def buscar_solucion_BFS(estado_inicial, solucion ) :
+def buscar_solucion_BFS(estado_inicial, solucion ):
     solucionado = False
     nodos_visitados = []
     nodos_frontera = []

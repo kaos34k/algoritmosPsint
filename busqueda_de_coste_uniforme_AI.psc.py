@@ -14,9 +14,8 @@ Este es un archivo temporal.
 
 from  arbol_AI import Nodo
 
-def compara (x, y) :
-	return x.get_coste() - y.get_coste()
-
+def comparar(x, y):
+	return (x.get_coste() - y.get_coste())
 
 def buscar_solucion_UCS(conexiones,estado_inicial, solucion ) :
 	solucionado = False
@@ -29,7 +28,7 @@ def buscar_solucion_UCS(conexiones,estado_inicial, solucion ) :
 
 	while (not solucionado) and len(nodos_frontera) != 0:
 		#ordenar nodos frontera
-		nodos_frontera = sorted(nodos_frontera, cmp = compara )
+		nodos_frontera = sorted(nodos_frontera, comparar())
 		nodo = nodos_frontera[0]
 
 		# extraer todo y añadirlo a visitados
@@ -43,7 +42,7 @@ def buscar_solucion_UCS(conexiones,estado_inicial, solucion ) :
 			dato_nodo = nodo.get_datos()
 
 			lista_hijos = []
-			for un_hijo in conexiones[dato_nodo][un_hijo]:
+			for un_hijo in conexiones[dato_nodo]:
 				hijo = Nodo(un_hijo)
 				coste = conexiones[dato_nodo][un_hijo]
 				hijo.set_coste(nodo.get_coste() + coste)
@@ -57,8 +56,7 @@ def buscar_solucion_UCS(conexiones,estado_inicial, solucion ) :
 								nodos_frontera.append(hijo)
 					else : 
 						nodos_frontera.append(hijo)
-						nodo.set_hijos(lista_hijos)		
-
+						nodo.set_hijos(lista_hijos)
 
 if __name__ == "__main__" :
 	estado_inicial = "Malaga"
@@ -73,7 +71,7 @@ if __name__ == "__main__" :
 		'Santiago': {'Salamanca': 390, 'Madrid': 599},
 		'Santander': {'Madrid': 437, 'Zaragoza': 394},
 		'Zaragoza': {'Barcelona':296, 'Valencia': 309,  'Madrid': 313 },
-		'Barcelona': {'Zaragoza': 296, 'Madrid': 603, 'Valencia': 346},
+		'Barcelona': {'Zaragoza': 296, 'Madrid': 603, 'Valencia': 346}
 	}
 
 	nodo_solucion = buscar_solucion_UCS(conexiones, estado_inicial, solucion)
